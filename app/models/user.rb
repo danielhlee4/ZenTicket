@@ -8,4 +8,6 @@ class User < ApplicationRecord
         format: { with: URI::MailTo::EMAIL_REGEXP }
     validates :password,
         length: { in: 6..255 }, allow_nil: true
+
+    has_many :tickets, dependent: :destroy
 end
