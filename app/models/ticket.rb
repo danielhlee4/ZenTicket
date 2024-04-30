@@ -18,7 +18,10 @@ class Ticket < ApplicationRecord
   private
 
   def status_transition_is_valid
-    if status_changed? && !(status_change_allowed?)
+    # Only check transitions if the record already exists and the status has changed
+    return unless persisted? && status_changed?
+  
+    unless status_change_allowed?
       errors.add(:status, "Transition from #{status_was} to #{status} is not allowed")
     end
   end
@@ -30,6 +33,12 @@ class Ticket < ApplicationRecord
       "In Progress" => ["Closed", "Open"],
       "Closed" => []
     }
-    allowed_transitions[status_was].include?(status)
+
+    # Allow any initial status when the record is new and not persisted
+    return true if new_record?
+    
+    # Fetch the allowed transitions for the previous status, or use an empty array if none
+    valid_transitions = allowed_transitions[status_was] || []
+    valid_transitions.include?(status)
   end
 end
