@@ -1,6 +1,12 @@
 class TicketsController < ApplicationController
+    before_action :authenticate_user!
+
     def index
-        @tickets = Ticket.all
+        if current_user.admin?
+            @tickets = Ticket.all
+        else
+            @tickets = current_user.tickets
+        end
     end
   
     def show
