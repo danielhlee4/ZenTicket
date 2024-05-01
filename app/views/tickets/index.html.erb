@@ -21,7 +21,7 @@
         <tbody>
           <% @tickets.each do |ticket| %>
             <tr>
-              <td><%= ticket.title %></td>
+              <td class="title-column"><%= ticket.title %></td>
               <td><%= ticket.priority_level %></td>
               <td><%= ticket.status %></td>
               <td>

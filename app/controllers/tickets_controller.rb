@@ -40,6 +40,7 @@ class TicketsController < ApplicationController
         if @ticket.update(ticket_params)
             redirect_to @ticket, notice: 'Ticket updated successfully.'
         else
+            flash.now[:alert] = @ticket.errors.full_messages.to_sentence
             render :edit
         end
     end
@@ -51,6 +52,10 @@ class TicketsController < ApplicationController
     end
   
     private
+
+    def set_ticket
+        @ticket = Ticket.find(params[:id])
+    end
 
     def ticket_params
         if current_user.admin?

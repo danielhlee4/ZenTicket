@@ -19,7 +19,14 @@
     margin: auto;
 }
 
-.ticket-show-max-width, .ticket-create-max-width {
+.ticket-show-max-width, .ticket-create-max-width, .ticket-edit-max-width {
     max-width: 800px;
     margin: auto;
+}
+
+.title-column {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 200px;
 }
