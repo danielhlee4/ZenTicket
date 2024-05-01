@@ -1,6 +1,7 @@
 class TicketsController < ApplicationController
     before_action :authenticate_user!
     before_action :set_ticket, only: [:show, :edit, :update, :destroy]
+    before_action :authorize_user, only: [:edit, :update]
 
     def index
         if current_user.admin?
@@ -32,11 +33,10 @@ class TicketsController < ApplicationController
     end
   
     def edit
-        @ticket = Ticket.find(params[:id])
+        # @ticket is already set by the before_action
     end
   
     def update
-        @ticket = Ticket.find(params[:id])
         if @ticket.update(ticket_params)
             redirect_to @ticket, notice: 'Ticket updated successfully.'
         else
@@ -52,12 +52,18 @@ class TicketsController < ApplicationController
   
     private
 
-    def set_ticket
-        @ticket = Ticket.find(params[:id])
-    end
-  
     def ticket_params
-        params.require(:ticket).permit(:title, :description, :priority_level, :status, :resolution_details)
+        if current_user.admin?
+            params.require(:ticket).permit(:title, :description, :priority_level, :status, :resolution_details)
+        else
+            params.require(:ticket).permit(:title, :description, :priority_level)
+        end
+    end
+    
+    def authorize_user
+        unless current_user.admin? || current_user == @ticket.user
+            redirect_to tickets_path, alert: 'You are not authorized to edit this ticket'
+        end
     end
 end
   
