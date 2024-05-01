@@ -1,0 +1,25 @@
+<div class="container ticket-create-max-width">
+  <h1 class="my-4">Create Ticket</h1>
+
+  <%= render_flash %>
+
+  <%= form_with model: @ticket, local: true do |form| %>
+    <div class="mb-3">
+      <%= form.label :title %>
+      <%= form.text_field :title, class: 'form-control' %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label :priority_level %>
+      <%= form.select :priority_level, options_for_select([['Please select', ''], "Low", "Medium", "High"]), {}, class: 'form-select' %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label :description %>
+      <%= form.text_area :description, rows: 5, class: 'form-control' %>
+    </div>
+
+    <%= form.submit 'Create Ticket', class: 'btn btn-primary' %>
+    <%= link_to 'Return to Dashboard', tickets_path, class: 'btn btn-secondary' %>
+  <% end %>
+</div>

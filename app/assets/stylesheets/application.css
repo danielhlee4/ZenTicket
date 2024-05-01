@@ -13,3 +13,13 @@
  *= require_tree .
  *= require_self
  */
+
+.ticket-index-max-width {
+    max-width: 1000px;
+    margin: auto;
+}
+
+.ticket-show-max-width, .ticket-create-max-width {
+    max-width: 800px;
+    margin: auto;
+}

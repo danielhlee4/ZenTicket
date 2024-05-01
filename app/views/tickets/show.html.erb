@@ -1,0 +1,24 @@
+<div class="container ticket-show-max-width">
+  <h1 class="my-4"><%= @ticket.user.email %>'s Ticket Details</h1>
+
+  <div class="card mb-4">
+    <%= render_flash %>
+    <div class="card-header">
+      Ticket Information
+    </div>
+    <div class="card-body">
+      <h5 class="card-title"><%= @ticket.title %></h5>
+      <p class="card-text"><strong>Description:</strong> <%= @ticket.description %></p>
+      <p class="card-text"><strong>Priority Level:</strong> <%= @ticket.priority_level %></p>
+      <p class="card-text"><strong>Status:</strong> <%= @ticket.status %></p>
+      <% if @ticket.resolution_details.present? %>
+        <p class="card-text"><strong>Resolution Details:</strong> <%= @ticket.resolution_details %></p>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="btn-group">
+    <%= link_to 'Edit', edit_ticket_path(@ticket), class: 'btn btn-info' %>
+    <%= link_to 'Delete', @ticket, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-warning' %>
+    <%= link_to 'Return to Dashboard', tickets_path, class: 'btn btn-secondary' %>
+</div>
