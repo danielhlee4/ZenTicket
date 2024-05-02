@@ -9,7 +9,9 @@
     <div class="card-body">
       <h5 class="card-title"><%= @ticket.title %></h5>
       <p class="card-text"><strong>Description:</strong> <%= @ticket.description %></p>
-      <p class="card-text"><strong>Priority Level:</strong> <%= @ticket.priority_level %></p>
+      <% if current_user.admin? %>
+        <p class="card-text"><strong>Priority Level:</strong> <%= @ticket.priority_level %></p>
+      <% end %>
       <p class="card-text"><strong>Status:</strong> <%= @ticket.status %></p>
       <% if @ticket.resolution_details.present? %>
         <p class="card-text"><strong>Resolution Details:</strong> <%= @ticket.resolution_details %></p>

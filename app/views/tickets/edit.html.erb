@@ -9,10 +9,6 @@
       <%= form.text_field :title, class: 'form-control' %>
     </div>
 
-    <div class="mb-3">
-      <%= form.label :priority_level %>
-      <%= form.select :priority_level, options_for_select(["1 - Low", "2 - Medium", "3 - High"], @ticket.priority_level), {}, class: 'form-select' %>
-    </div>
 
     <div class="mb-3">
       <%= form.label :description %>
@@ -20,6 +16,11 @@
     </div>
 
     <% if current_user.admin? %>
+      <div class="mb-3">
+        <%= form.label :priority_level %>
+        <%= form.select :priority_level, options_for_select(["1 - Low", "2 - Medium", "3 - High"], @ticket.priority_level), {}, class: 'form-select' %>
+      </div>
+
       <div class="mb-3">
         <%= form.label :status %>
         <%= form.select :status, options_for_select(["Open", "In Progress", "Closed"], @ticket.status), {}, class: 'form-select' %>

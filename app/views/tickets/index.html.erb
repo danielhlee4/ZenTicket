@@ -20,18 +20,26 @@
     <div class="col-12">
       <table id="tickets-table" class="table table-bordered table-striped">
         <thead class="thead-dark">
-          <tr>
-            <th style="width: 40%;">Title</th>
+        <tr>
+          <th style="width: 50%;">Title</th>
+          <% if current_user.admin? %>
             <th style="width: 20%;">Priority</th>
-            <th style="width: 20%;">Status</th>
-            <th style="width: 20%;">Actions</th>
-          </tr>
+          <% else %>
+            <th class="hidden-placeholder" style="width: 0%;"></th> <!-- Empty header placeholder -->
+          <% end %>
+          <th style="width: 20%;">Status</th>
+          <th style="width: 20%;">Actions</th>
+        </tr>
         </thead>
         <tbody>
           <% @tickets.each do |ticket| %>
             <tr>
               <td class="title-column"><%= ticket.title %></td>
-              <td><%= ticket.priority_level %></td>
+              <% if current_user.admin? %>
+                <td><%= ticket.priority_level %></td>
+              <% else %>
+                <td class="hidden-placeholder"></td> <!-- Empty placeholder for non-admin users -->
+              <% end %>
               <td><%= ticket.status %></td>
               <td>
                 <%= link_to 'Details', ticket, class: 'btn btn-secondary btn-sm' %>

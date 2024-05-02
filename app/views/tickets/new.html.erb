@@ -10,14 +10,16 @@
     </div>
 
     <div class="mb-3">
-      <%= form.label :priority_level %>
-      <%= form.select :priority_level, options_for_select([['Please select', ''], "1 - Low", "2 - Medium", "3 - High"]), {}, class: 'form-select' %>
-    </div>
-
-    <div class="mb-3">
       <%= form.label :description %>
       <%= form.text_area :description, rows: 5, class: 'form-control' %>
     </div>
+    
+    <% if current_user.admin? %>
+      <div class="mb-3">
+        <%= form.label :priority_level %>
+        <%= form.select :priority_level, options_for_select([['Please select', ''], "1 - Low", "2 - Medium", "3 - High"]), {}, class: 'form-select' %>
+      </div>
+    <%= end %>
 
     <%= form.submit 'Create Ticket', class: 'btn btn-primary' %>
     <%= link_to 'Return to Dashboard', tickets_path, class: 'btn btn-secondary' %>
