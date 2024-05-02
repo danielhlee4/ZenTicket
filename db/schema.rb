@@ -18,7 +18,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_02_134639) do
     t.bigint "user_id", null: false
     t.string "title", null: false
     t.text "description", null: false
-    t.string "priority_level", null: false
+    t.string "priority_level"
     t.string "status", null: false
     t.text "resolution_details"
     t.datetime "created_at", null: false
