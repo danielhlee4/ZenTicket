@@ -20,9 +20,10 @@ class TicketsController < ApplicationController
     end
   
     def create
+        user = User.find_by(email: params[:ticket][:user_email]) if current_user.admin?
         @ticket = Ticket.new(ticket_params)
+        @ticket.user = current_user.admin? && user ? user : current_user
         @ticket.status = "Open" # Default status is 'Open'
-        @ticket.user = current_user
 
         if @ticket.save
             redirect_to @ticket, notice: 'Ticket created successfully.'
@@ -58,7 +59,7 @@ class TicketsController < ApplicationController
 
     def ticket_params
         permitted_params = [:title, :description]
-        permitted_params << :priority_level << :status << :resolution_details << :internal_note if current_user.admin?
+        permitted_params << :user_id << :priority_level << :status << :resolution_details << :internal_note if current_user.admin?
         params.require(:ticket).permit(permitted_params)
     end
     

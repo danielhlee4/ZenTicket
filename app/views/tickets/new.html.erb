@@ -16,6 +16,11 @@
 
     <% if current_user.admin? %>
       <div class="mb-3">
+        <%= form.label :user_email, 'Assign Ticket to User (e.g. demo@user.io)' %>
+        <%= form.text_field :user_email, class: 'form-control', value: @ticket.user&.email %>
+      </div>
+
+      <div class="mb-3">
         <%= form.label :priority_level %>
         <%= form.select :priority_level, options_for_select([['Please select', ''], "1 - Low", "2 - Medium", "3 - High"]), {}, class: 'form-select' %>
       </div>
