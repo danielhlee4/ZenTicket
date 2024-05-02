@@ -7,8 +7,7 @@ class Ticket < ApplicationRecord
     uniqueness: { scope: :user_id, message: "You have already created a ticket with this title" }
   validates :description,
     length: { in: 3..30000 }
-  validates :priority_level, 
-    inclusion: { in: ["1 - Low", "2 - Medium", "3 - High"], message: "%{value} is not a priority level" }
+  validate :validate_priority_level
   validates :status, 
     inclusion: { in: ["Open", "In Progress", "Closed"], message: "%{value} is not a status" }
   validate :status_transition_is_valid
@@ -46,6 +45,14 @@ class Ticket < ApplicationRecord
   def admin_priority_validation
     if user&.admin? && priority_level.blank?
       errors.add(:priority_level, "is required for admins")
+    end
+  end
+
+  def validate_priority_level
+    if user&.admin?
+      unless ["1 - Low", "2 - Medium", "3 - High"].include?(priority_level)
+        errors.add(:priority_level, "#{priority_level} is not a priority level")
+      end
     end
   end
 end

@@ -23,11 +23,11 @@
         <tr>
           <th style="width: 50%;">Title</th>
           <% if current_user.admin? %>
-            <th style="width: 20%;">Priority</th>
+            <th style="width: 15%;">Priority</th>
           <% else %>
             <th class="hidden-placeholder" style="width: 0%;"></th> <!-- Empty header placeholder -->
           <% end %>
-          <th style="width: 20%;">Status</th>
+          <th style="width: 15%;">Status</th>
           <th style="width: 20%;">Actions</th>
         </tr>
         </thead>
@@ -45,7 +45,7 @@
                 <%= link_to 'Details', ticket, class: 'btn btn-secondary btn-sm' %>
                 <% if current_user.admin? || current_user == ticket.user %>
                   <%= link_to 'Edit', edit_ticket_path(ticket), class: 'btn btn-info btn-sm' %>
-                  <%= link_to 'Delete', ticket, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-warning btn-sm' %>
+                  <%= link_to 'Delete', ticket, method: :delete, data: { confirm: 'Are you sure you want to delete this ticket?' }, class: 'btn btn-warning btn-sm' %>
                 <% end %>
               </td>
             </tr>

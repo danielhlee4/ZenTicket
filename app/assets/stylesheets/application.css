@@ -34,3 +34,7 @@
 .hidden-placeholder {
     display: none;
 }
+
+.card-title {
+    margin-bottom: 1rem;
+}
