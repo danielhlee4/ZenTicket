@@ -36,7 +36,7 @@ puts "Creating tickets..."
 Ticket.create!(
     title: "Login Issue", 
     description: "Cannot log into account", 
-    priority_level: "High", 
+    priority_level: "3 - High", 
     status: "Open", 
     user: user1
     )
@@ -44,7 +44,7 @@ Ticket.create!(
 Ticket.create!(
     title: "Payment Issue", 
     description: "Payment processing failed", 
-    priority_level: "Medium", 
+    priority_level: "2 - Medium", 
     status: "In Progress", 
     user: user1
     )
@@ -52,7 +52,7 @@ Ticket.create!(
 Ticket.create!(
     title: "Account Locked", 
     description: "Account has been locked after multiple login attempts", 
-    priority_level: "High", 
+    priority_level: "3 - High", 
     status: "Closed", 
     resolution_details: "Account unlocked. Login attempts limit increased.", 
     user: user2
@@ -61,7 +61,7 @@ Ticket.create!(
 Ticket.create!(
     title: "Feature Request", 
     description: "Requesting new features in the dashboard", 
-    priority_level: "Low", 
+    priority_level: "1 - Low", 
     status: "Open", 
     user: user2
     )
@@ -69,7 +69,7 @@ Ticket.create!(
 Ticket.create!(
     title: "Data Sync Error", 
     description: "Data is not syncing between devices", 
-    priority_level: "Medium", 
+    priority_level: "2 - Medium", 
     status: "In Progress", 
     user: user3
     )
@@ -77,7 +77,7 @@ Ticket.create!(
 Ticket.create!(
     title: "Email Notification Bug", 
     description: "Email notifications are not being sent", 
-    priority_level: "High", 
+    priority_level: "3 - High", 
     status: "Open", 
     user: user3
     )
@@ -85,7 +85,7 @@ Ticket.create!(
 Ticket.create!(
     title: "UI Glitch", 
     description: "UI does not load properly in Safari", 
-    priority_level: "Low", 
+    priority_level: "1 - Low", 
     status: "Closed",
     resolution_details: "Safari support included", 
     user: user4
@@ -94,7 +94,7 @@ Ticket.create!(
 Ticket.create!(
     title: "Performance Issues", 
     description: "The application is slow during peak hours", 
-    priority_level: "Medium", 
+    priority_level: "2 - Medium", 
     status: "In Progress", 
     user: user4
     )

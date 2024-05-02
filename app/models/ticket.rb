@@ -1,5 +1,5 @@
 class Ticket < ApplicationRecord
-  validates :title, :description, :priority_level, :status,
+  validates :title, :description, :status,
     presence: true
   validates :resolution_details, presence: true, if: -> { status == "Closed" }
   validates :title,
@@ -8,10 +8,11 @@ class Ticket < ApplicationRecord
   validates :description,
     length: { in: 3..30000 }
   validates :priority_level, 
-    inclusion: { in: ["Low", "Medium", "High"], message: "%{value} is not a priority level" }
+    inclusion: { in: ["1 - Low", "2 - Medium", "3 - High"], message: "%{value} is not a priority level" }
   validates :status, 
     inclusion: { in: ["Open", "In Progress", "Closed"], message: "%{value} is not a status" }
   validate :status_transition_is_valid
+  validate :admin_priority_validation
 
   belongs_to :user
 
@@ -40,5 +41,11 @@ class Ticket < ApplicationRecord
     # Fetch the allowed transitions for the previous status, or use an empty array if none
     valid_transitions = allowed_transitions[status_was] || []
     valid_transitions.include?(status)
+  end
+
+  def admin_priority_validation
+    if user&.admin? && priority_level.blank?
+      errors.add(:priority_level, "is required for admins")
+    end
   end
 end
