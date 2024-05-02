@@ -57,11 +57,9 @@ class TicketsController < ApplicationController
     end
 
     def ticket_params
-        if current_user.admin?
-            params.require(:ticket).permit(:title, :description, :priority_level, :status, :resolution_details)
-        else
-            params.require(:ticket).permit(:title, :description, :priority_level)
-        end
+        permitted_params = [:title, :description]
+        permitted_params << :priority_level << :status << :resolution_details if current_user.admin?
+        params.require(:ticket).permit(permitted_params)
     end
     
     def authorize_user
