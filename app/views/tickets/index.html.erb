@@ -1,6 +1,15 @@
 <div class="container ticket-index-max-width">
   <h1 class="my-4">Tickets Dashboard</h1>
   <%= render_flash %>
+    <% if current_user.admin? %>
+      <div class="alert alert-info">
+        <strong>Welcome, Admin <%= current_user.email %>!</strong> You have full access to view and manage all tickets.
+      </div>
+    <% else %>
+      <div class="alert alert-info">
+        <strong>Welcome, <%= current_user.email %>!</strong> You can view and manage your own tickets.
+      </div>
+    <% end %>
   <div class="row mb-3">
     <div class="col-12">
       <%= link_to 'Create Ticket', new_ticket_path, class: 'btn btn-primary' %>
