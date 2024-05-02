@@ -10,4 +10,5 @@ class User < ApplicationRecord
         length: { in: 6..255 }, allow_nil: true
 
     has_many :tickets, dependent: :destroy
+    has_many :comments, dependent: :destroy
 end
