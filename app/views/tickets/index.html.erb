@@ -21,7 +21,12 @@
       <table id="tickets-table" class="table table-bordered table-striped">
         <thead class="thead-dark">
         <tr>
-          <th style="width: 50%;">Title</th>
+          <% if current_user.admin? %>
+            <th style="width: 5%;">ID</th>
+          <% else %>
+            <th class="hidden-placeholder" style="width: 0%;"></th> <!-- Empty header placeholder -->
+          <% end %>
+          <th style="width: 30%;">Title</th>
           <% if current_user.admin? %>
             <th style="width: 15%;">Priority</th>
           <% else %>
@@ -34,6 +39,11 @@
         <tbody>
           <% @tickets.each do |ticket| %>
             <tr>
+              <% if current_user.admin? %>
+                <td><%= ticket.user_id %></td>
+              <% else %>
+                <td class="hidden-placeholder"></td> <!-- Empty placeholder for non-admin users -->
+              <% end %>
               <td class="title-column"><%= ticket.title %></td>
               <% if current_user.admin? %>
                 <td><%= ticket.priority_level %></td>
