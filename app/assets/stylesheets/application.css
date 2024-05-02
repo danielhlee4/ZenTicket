@@ -35,6 +35,6 @@
     display: none;
 }
 
-.card-title {
+.card-title, .logout-margin {
     margin-bottom: 1rem;
 }
