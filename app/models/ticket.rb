@@ -6,10 +6,11 @@ class Ticket < ApplicationRecord
     length: { in: 2..255 },
     uniqueness: { scope: :user_id, message: "You have already created a ticket with this title" }
   validates :description,
-    length: { in: 3..30000 }
+    length: { in: 3..1000 }
   validate :validate_priority_level
   validates :status, 
     inclusion: { in: ["Open", "In Progress", "Closed"], message: "%{value} is not a status" }
+  validates :internal_note, length: { maximum: 1000 }, allow_blank: true
   validate :status_transition_is_valid
   validate :admin_priority_validation
 

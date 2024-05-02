@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_05_02_134639) do
+ActiveRecord::Schema[7.0].define(version: 2024_05_02_164804) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -23,6 +23,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_02_134639) do
     t.text "resolution_details"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "internal_note"
     t.index ["priority_level"], name: "index_tickets_on_priority_level"
     t.index ["status"], name: "index_tickets_on_status"
     t.index ["user_id"], name: "index_tickets_on_user_id"
