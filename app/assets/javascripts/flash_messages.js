@@ -5,10 +5,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if (flash.classList.contains('alert-success')) {
             setTimeout(() => {
                 flash.classList.remove('show');
-            }, 3000);
+            }, 4000);
             setTimeout(() => {
                 flash.remove();
-            }, 3200);
+            }, 4200);
         }
     });
 });

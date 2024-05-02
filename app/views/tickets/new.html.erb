@@ -19,6 +19,11 @@
         <%= form.label :priority_level %>
         <%= form.select :priority_level, options_for_select([['Please select', ''], "1 - Low", "2 - Medium", "3 - High"]), {}, class: 'form-select' %>
       </div>
+
+      <div class="mb-3">
+        <%= form.label :internal_note %>
+        <%= form.text_area :internal_note, class: 'form-control', rows: 5 %>
+      </div>
     <% end %>
 
     <%= form.submit 'Create Ticket', class: 'btn btn-primary' %>

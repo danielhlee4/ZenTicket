@@ -11,6 +11,7 @@
       <p class="card-text"><strong>Description:</strong> <%= @ticket.description %></p>
       <% if current_user.admin? %>
         <p class="card-text"><strong>Priority Level:</strong> <%= @ticket.priority_level %></p>
+        <p><strong>Internal Note:</strong> <%= @ticket.internal_note %></p>
       <% end %>
       <p class="card-text"><strong>Status:</strong> <%= @ticket.status %></p>
       <% if @ticket.resolution_details.present? %>

@@ -22,6 +22,11 @@
       </div>
 
       <div class="mb-3">
+        <%= form.label :internal_note %>
+        <%= form.text_area :internal_note, class: 'form-control', rows: 5 %>
+      </div>
+
+      <div class="mb-3">
         <%= form.label :status %>
         <%= form.select :status, options_for_select(["Open", "In Progress", "Closed"], @ticket.status), {}, class: 'form-select' %>
       </div>
