@@ -13,8 +13,9 @@ class TicketsController < ApplicationController
   
     def show
         # @ticket is already set by the before_action
-        @latest_comments = @ticket.comments.order(created_at: :desc).limit(3)
-        @all_comments = @ticket.comments.order(created_at: :desc)
+        comments = @ticket.comments.order(created_at: :desc)
+        @latest_comments = comments.limit(3)
+        @remaining_comments = comments.offset(3)
     end
   
     def new

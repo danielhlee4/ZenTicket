@@ -52,10 +52,10 @@
     <% end %>
   </ul>
 
-  <% if @all_comments.count > 3 %>
+  <% if @remaining_comments.any? %>
     <button id="show-all-comments" class="btn btn-link">Show all comments</button>
     <ul id="all-comments" class="list-unstyled mt-4" style="display:none;">
-      <% @all_comments.each do |comment| %>
+      <% @remaining_comments.each do |comment| %>
         <li class="mb-3">
           <div class="card">
             <div class="card-header" style="<%= 'background-color: #Fbfaba;' unless comment.user.admin? %>">
