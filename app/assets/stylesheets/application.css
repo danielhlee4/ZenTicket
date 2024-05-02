@@ -38,3 +38,7 @@
 .card-title, .logout-margin {
     margin-bottom: 1rem;
 }
+
+.comment-content-message {
+    margin-top: 1rem;
+}
