@@ -13,6 +13,7 @@ class TicketsController < ApplicationController
   
     def show
         # @ticket is already set by the before_action
+        @comments = @ticket.comments.order(created_at: :desc)
     end
   
     def new

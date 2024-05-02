@@ -15,6 +15,7 @@ class Ticket < ApplicationRecord
   validate :admin_priority_validation
 
   belongs_to :user
+  has_many :comments, dependent: :destroy
 
   private
 
