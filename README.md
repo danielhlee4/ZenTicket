@@ -8,7 +8,7 @@
 ### Frontend
 - **Ticket Submission Form:** Allows users to submit new support tickets with a title, description, and priority level (assigned by admin).
 - **Ticket Dashboard:** Provides a dynamic view to list all tickets with sorting, filtering, and search capabilities based on ticket attributes such as status and priority. The view dynamically adjusts based on user roles.
-- **Ticket Details View:** Displays full ticket details, allowing users to view and update the ticket status. Includes a "Customer Service Chat" section for admin-user communication through comments.
+- **Ticket Details View:** Displays full ticket details, allowing users to view and update the ticket status. Includes a "Customer Service Thread" section for admin-user communication through comments.
 
 ### Backend
 - **API Endpoints:**
@@ -64,7 +64,7 @@ Open your browser and navigate to [http://localhost:3000/login](http://localhost
 ## Next Steps
 
 - **Automated Email Notifications:**
-  Implement functionality to automatically send email notifications to users whenever their ticket has been updated or commented on by an admin. This feature will keep users informed about the status of their tickets in real-time.
+  Implement functionality to automatically send email notifications to users whenever their ticket has been updated or commented on by an admin. Users can reply directly to the email to update the ticket's customer service thread. This feature will keep users informed about the status of their tickets in real-time.
 
 - **Public vs. Internal Comments:**
   Allow admins to mark comments as either 'public' or 'internal'. Public comments will be visible to the user, while internal comments will remain private for internal use only. This will enable admins to keep internal notes while also communicating transparently with users.

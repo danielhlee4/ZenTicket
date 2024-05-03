@@ -4,11 +4,11 @@
   <div class="card mb-4">
     <%= render_flash %>
     <div class="card-header d-flex justify-content-between align-items-center">
-      <span>Ticket ID: <%= @ticket.id %></span>
+      <span><strong><%= @ticket.title %></strong></span>
       <span>Created: <%= @ticket.created_at.strftime("%B %d, %Y %H:%M") %></span>
     </div>
     <div class="card-body">
-      <h5 class="card-title"><%= @ticket.title %></h5>
+      <p class="card-ticket-id"><strong>Ticket ID:</strong> <%= @ticket.id %></p>
       <p class="card-text"><strong>Description:</strong> <%= @ticket.description %></p>
       <% if current_user.admin? %>
         <p class="card-text"><strong>Priority Level:</strong> <%= @ticket.priority_level %></p>
@@ -27,7 +27,7 @@
   <%= link_to 'Delete Ticket', @ticket, method: :delete, data: { confirm: 'Are you sure you want to delete this ticket?' }, class: 'btn btn-warning' %>
   <%= link_to 'Return to Dashboard', tickets_path, class: 'btn btn-secondary' %>
 
-  <h3 class="customer-service-chat">Customer Service Chat</h3>
+  <h3 class="customer-service-chat">Customer Service Thread</h3>
 
   <% if @ticket.closed_and_expired? %>
     <p>This ticket is closed and cannot receive any more comments.</p>
