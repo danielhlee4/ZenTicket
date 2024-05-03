@@ -17,6 +17,10 @@ class Ticket < ApplicationRecord
   belongs_to :user
   has_many :comments, dependent: :destroy
 
+  def closed_and_expired?
+    status == 'Closed' && updated_at <= 7.days.ago
+  end
+
   private
 
   def status_transition_is_valid

@@ -37,15 +37,21 @@ class TicketsController < ApplicationController
     end
   
     def edit
-        # @ticket is already set by the before_action
+        if @ticket.closed_and_expired?
+            redirect_to @ticket, alert: 'This ticket is closed and cannot be edited.'
+        end
     end
   
     def update
-        if @ticket.update(ticket_params)
-            redirect_to @ticket, notice: 'Ticket updated successfully.'
+        if @ticket.closed_and_expired?
+            redirect_to @ticket, alert: 'This ticket is closed and cannot be updated.'
         else
-            flash.now[:alert] = @ticket.errors.full_messages.to_sentence
-            render :edit
+            if @ticket.update(ticket_params)
+                redirect_to @ticket, notice: 'Ticket updated successfully.'
+            else
+                flash.now[:alert] = @ticket.errors.full_messages.to_sentence
+                render :edit
+            end
         end
     end
   
