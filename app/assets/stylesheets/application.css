@@ -39,7 +39,7 @@
     margin-bottom: 1rem;
 }
 
-.comment-content-message {
+.comment-content-message, .comment-order-message {
     margin-top: 1rem;
 }
 
