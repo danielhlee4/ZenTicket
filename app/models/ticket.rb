@@ -3,7 +3,7 @@ class Ticket < ApplicationRecord
     presence: true
   validates :resolution_details, presence: true, if: -> { status == "Closed" }
   validates :title,
-    length: { in: 2..255 },
+    length: { in: 2..45 },
     uniqueness: { scope: :user_id, message: "You have already created a ticket with this title" }
   validates :description,
     length: { in: 3..1000 }
