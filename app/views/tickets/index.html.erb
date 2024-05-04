@@ -1,15 +1,15 @@
 <div class="container ticket-index-max-width">
   <h1 class="my-4">Tickets Dashboard</h1>
   <%= render_flash %>
-    <% if current_user.admin? %>
-      <div class="alert alert-info">
-        <strong>Welcome, Admin <%= current_user.email %>!</strong> You have full access to view and manage all tickets.
-      </div>
-    <% else %>
-      <div class="alert alert-info">
-        <strong>Welcome, <%= current_user.email %>!</strong> You can view and manage your own tickets.
-      </div>
-    <% end %>
+  <% if current_user.admin? %>
+    <div class="alert alert-info">
+      <strong>Welcome, Admin <%= current_user.email %>!</strong> You have full access to view and manage all tickets.
+    </div>
+  <% else %>
+    <div class="alert alert-info">
+      <strong>Welcome, <%= current_user.email %>!</strong> You can view and manage your own tickets.
+    </div>
+  <% end %>
   <div class="row mb-3">
     <div class="col-12">
       <%= link_to 'Create Ticket', new_ticket_path, class: 'btn btn-primary' %>
@@ -21,34 +21,28 @@
       <table id="tickets-table" class="table table-bordered table-striped">
         <thead class="thead-dark">
         <tr>
+          <th style="width: 10%;">Ticket ID</th>
+          <th style="width: 25%;">Title</th>
+          <th style="width: 15%;">Requester Email</th>
           <% if current_user.admin? %>
-            <th style="width: 8%;">User ID</th>
+            <th style="width: 10%;">Priority</th>
           <% else %>
-            <th class="hidden-placeholder" style="width: 0%;"></th> <!-- Empty header placeholder -->
+            <th class="hidden-placeholder" style="width: 0%;"></th>
           <% end %>
-          <th style="width: 30%;">Title</th>
-          <% if current_user.admin? %>
-            <th style="width: 15%;">Priority</th>
-          <% else %>
-            <th class="hidden-placeholder" style="width: 0%;"></th> <!-- Empty header placeholder -->
-          <% end %>
-          <th style="width: 15%;">Status</th>
+          <th style="width: 10%;">Status</th>
           <th style="width: 20%;">Actions</th>
         </tr>
         </thead>
         <tbody>
           <% @tickets.each do |ticket| %>
             <tr>
-              <% if current_user.admin? %>
-                <td><%= ticket.user_id %></td>
-              <% else %>
-                <td class="hidden-placeholder"></td> <!-- Empty placeholder for non-admin users -->
-              <% end %>
+              <td><%= ticket.id %></td>
               <td class="title-column"><%= ticket.title %></td>
+              <td><%= ticket.user.email %></td>
               <% if current_user.admin? %>
                 <td><%= ticket.priority_level %></td>
               <% else %>
-                <td class="hidden-placeholder"></td> <!-- Empty placeholder for non-admin users -->
+                <td class="hidden-placeholder"></td>
               <% end %>
               <td><%= ticket.status %></td>
               <td>

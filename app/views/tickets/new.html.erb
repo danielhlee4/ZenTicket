@@ -16,7 +16,7 @@
 
     <% if current_user.admin? %>
       <div class="mb-3">
-        <%= form.label :user_email, 'Assign Ticket to User (e.g. demo@user.io)' %>
+        <%= form.label :user_email, 'Assign Ticket to User (e.g. john@user.io)' %>
         <%= form.text_field :user_email, class: 'form-control', value: @ticket.user&.email %>
       </div>
 

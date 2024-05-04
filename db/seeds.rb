@@ -25,10 +25,10 @@ ApplicationRecord.transaction do
         admin: true
     )
   
-    user1 = User.create!(email: 'demo@user.io', password: 'password', admin: false)
-    user2 = User.create!(email: 'demo1@user.io', password: 'password', admin: false)
-    user3 = User.create!(email: 'demo2@user.io', password: 'password', admin: false)
-    user4 = User.create!(email: 'demo3@user.io', password: 'password', admin: false)
+    user1 = User.create!(email: 'john@user.io', password: 'password', admin: false)
+    user2 = User.create!(email: 'jane@user.io', password: 'password', admin: false)
+    user3 = User.create!(email: 'pete@user.io', password: 'password', admin: false)
+    user4 = User.create!(email: 'isabella@user.io', password: 'password', admin: false)
 
     puts "Users have been created."
   
